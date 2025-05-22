@@ -1,0 +1,31 @@
+<%- include("layout", { body: null }) %>
+
+<div>
+  <form method="GET">
+    <label>Sort by:</label>
+    <select name="sort" onchange="this.form.submit()">
+      <option value="dateRead">Date Read</option>
+      <option value="rating">Rating</option>
+      <option value="title">Title</option>
+    </select>
+  </form>
+
+  <div class="book-list">
+    <% books.forEach(book => { %>
+      <div class="book">
+        <img src="<%= getCoverUrl(book.coverId) %>" alt="<%= book.title %>">
+        <h3><%= book.title %></h3>
+        <p><%= book.author %></p>
+        <p>⭐ <%= book.rating %></p>
+        <p><%= book.notes %></p>
+        <small>Read on: <%= new Date(book.dateRead).toDateString() %></small>
+        <div>
+          <a href="/books/<%= book._id %>/edit">Edit</a>
+          <form method="POST" action="/books/<%= book._id %>?_method=DELETE">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<%- include("layout", { body: `
+    <form action="/books" method="POST">
+      <input name="title" placeholder="Title" required>
+      <input name="author" placeholder="Author" required>
+      <input name="rating" type="number" min="1" max="10" placeholder="Rating">
+      <textarea name="notes" placeholder="Notes"></textarea>
+      <input name="dateRead" type="date" required>
+      <button type="submit">Add Book</button>
+    </form>
+  ` }) %>
+  
